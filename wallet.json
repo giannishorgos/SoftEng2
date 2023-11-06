@@ -1,0 +1,1839 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EXPENSR API",
+    "description": "The API for the EXPENSR Project.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "PersonalInfo",
+      "description": "PersonalInfo endpoints"
+    },
+    {
+      "name": "Income",
+      "description": "Income endpoints"
+    },
+    {
+      "name": "Expense",
+      "description": "Expense endpoints"
+    },
+    {
+      "name": "Goal",
+      "description": "Goal endpoints"
+    },
+    {
+      "name": "Notification",
+      "description": "Notification endpoints"
+    }
+  ],
+  "paths": {
+    "/user/personalinfo": {
+      "post": {
+        "tags": [
+          "PersonalInfo"
+        ],
+        "summary": "Post personal info when creating account",
+        "operationId": "postPersonalInfo",
+        "requestBody": {
+          "description": "User Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "admin": {
+                  "$ref": "#/components/examples/admin"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful account creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "admin": {
+                    "$ref": "#/components/examples/admin"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorConflict"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "PersonalInfoController"
+      }
+    },
+    "/user/{userID}/personalinfo": {
+      "get": {
+        "tags": [
+          "PersonalInfo"
+        ],
+        "summary": "Get personal info to display in profile page.",
+        "operationId": "getPersonalInfo",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "admin": {
+                    "$ref": "#/components/examples/admin"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "PersonalInfoController"
+      },
+      "put": {
+        "tags": [
+          "PersonalInfo"
+        ],
+        "summary": "Edit personal info.",
+        "operationId": "putPersonalInfo",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "User Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "admin": {
+                  "$ref": "#/components/examples/admin"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success, personal info edit was succesful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "admin": {
+                    "$ref": "#/components/examples/admin"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "PersonalInfoCOntroller"
+      }
+    },
+    "/user/{userID}/income": {
+      "get": {
+        "tags": [
+          "Income"
+        ],
+        "summary": "Get incomes list for a specific user.",
+        "operationId": "getIncomes",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, incomes list was loaded succesfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncomesList"
+                },
+                "examples": {
+                  "incomesList": {
+                    "$ref": "#/components/examples/incomeList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "IncomeController"
+      },
+      "post": {
+        "tags": [
+          "Income"
+        ],
+        "summary": "Create an income entry.",
+        "operationId": "postIncome",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Income Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Income"
+              },
+              "examples": {
+                "income": {
+                  "$ref": "#/components/examples/income"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful income creation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Income"
+                },
+                "examples": {
+                  "income": {
+                    "$ref": "#/components/examples/income"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorConflict"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "IncomeController"
+      }
+    },
+    "/user/{userID}/income/{incomeID}": {
+      "get": {
+        "tags": [
+          "Income"
+        ],
+        "summary": "Get one income entry.",
+        "operationId": "getIncomeByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "incomeID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, income was loaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Income"
+                },
+                "examples": {
+                  "income": {
+                    "$ref": "#/components/examples/income"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "IncomeController"
+      },
+      "put": {
+        "tags": [
+          "Income"
+        ],
+        "summary": "Edit one income entry.",
+        "operationId": "putIncomebyID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "incomeID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Income Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Income"
+              },
+              "examples": {
+                "income": {
+                  "$ref": "#/components/examples/income"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success, income was edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Income"
+                },
+                "examples": {
+                  "income": {
+                    "$ref": "#/components/examples/income"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "IncomeController"
+      },
+      "delete": {
+        "tags": [
+          "Income"
+        ],
+        "summary": "Delete one income entry.",
+        "operationId": "deleteIncomeBYID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "incomeID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, income was deleted successfully."
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "IncomeController"
+      }
+    },
+    "/user/{userID}/expense": {
+      "get": {
+        "tags": [
+          "Expense"
+        ],
+        "summary": "Get expenses list for a specific user.",
+        "operationId": "getExpenses",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, expenses list was loaded succesfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpensesList"
+                },
+                "examples": {
+                  "expensesList": {
+                    "$ref": "#/components/examples/expensesList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "ExpenseController"
+      },
+      "post": {
+        "tags": [
+          "Expense"
+        ],
+        "summary": "Create one expense entry.",
+        "operationId": "postExpense",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Expense Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Expense"
+              },
+              "examples": {
+                "expense": {
+                  "$ref": "#/components/examples/expense"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful expense creation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Expense"
+                },
+                "examples": {
+                  "expense": {
+                    "$ref": "#/components/examples/expense"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorConflict"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "ExpenseController"
+      }
+    },
+    "/user/{userID}/expense/{expenseID}": {
+      "get": {
+        "tags": [
+          "Expense"
+        ],
+        "summary": "Get one expense entry.",
+        "operationId": "getExpenseByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expenseID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, expense was loaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Expense"
+                },
+                "examples": {
+                  "expense": {
+                    "$ref": "#/components/examples/expense"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "ExpenseController"
+      },
+      "put": {
+        "tags": [
+          "Expense"
+        ],
+        "summary": "Edit one expense entry.",
+        "operationId": "putExpenseByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expenseID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Expense Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Expense"
+              },
+              "examples": {
+                "expense": {
+                  "$ref": "#/components/examples/expense"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success, expense was edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Expense"
+                },
+                "examples": {
+                  "expense": {
+                    "$ref": "#/components/examples/expense"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "ExpenseController"
+      },
+      "delete": {
+        "tags": [
+          "Expense"
+        ],
+        "summary": "Delete one expense entry.",
+        "operationId": "deleteExpenseByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expenseID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, expense was deleted successfully."
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "ExpenseController"
+      }
+    },
+    "/user/{userID}/goal": {
+      "get": {
+        "tags": [
+          "Goal"
+        ],
+        "summary": "Get goals list for a specific user.",
+        "operationId": "getGoals",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, goals list was loaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoalsList"
+                },
+                "examples": {
+                  "goalsList": {
+                    "$ref": "#/components/examples/goalsList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "GoalController"
+      }
+    },
+    "/user/{userID}/goal/{goalID}": {
+      "get": {
+        "tags": [
+          "Goal"
+        ],
+        "summary": "Get one goal entry.",
+        "operationId": "getGoalByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "goalID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, goal was loaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Goal"
+                },
+                "examples": {
+                  "goal": {
+                    "$ref": "#/components/examples/goal"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "GoalController"
+      },
+      "put": {
+        "tags": [
+          "Goal"
+        ],
+        "summary": "Edit one goal entry.",
+        "operationId": "putGoal",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "goalID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Goal Shema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Goal"
+              },
+              "examples": {
+                "goal": {
+                  "$ref": "#/components/examples/goal"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success, goal was edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Goal"
+                },
+                "examples": {
+                  "goal": {
+                    "$ref": "#/components/examples/goal"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "GoalController"
+      }
+    },
+    "/user/{userID}/notification": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Get notifications list for a specific user.",
+        "operationId": "getNotifications",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationsList"
+                },
+                "examples": {
+                  "notificationsList": {
+                    "$ref": "#/components/examples/notificationsList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorBadReq"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "error": {
+                    "$ref": "#/components/examples/errorNotFound"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "x-swagger-router-controller": "NotificationController"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Income": {
+        "required": [
+          "incomeDate",
+          "incomeID",
+          "userID"
+        ],
+        "type": "object",
+        "properties": {
+          "incomeID": {
+            "type": "integer"
+          },
+          "userID": {
+            "type": "integer"
+          },
+          "incomeAmount": {
+            "type": "number",
+            "format": "float"
+          },
+          "incomeSource": {
+            "type": "string"
+          },
+          "incomeDescription": {
+            "type": "string"
+          },
+          "incomeDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Expense": {
+        "required": [
+          "expenseDate",
+          "expenseID",
+          "userID"
+        ],
+        "type": "object",
+        "properties": {
+          "expenseID": {
+            "type": "integer"
+          },
+          "userID": {
+            "type": "integer"
+          },
+          "expenseAmount": {
+            "type": "number",
+            "format": "float"
+          },
+          "expenseSource": {
+            "type": "string"
+          },
+          "expenseDescription": {
+            "type": "string"
+          },
+          "expenseDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Goal": {
+        "required": [
+          "amount",
+          "goalID",
+          "months",
+          "userID"
+        ],
+        "type": "object",
+        "properties": {
+          "goalID": {
+            "type": "integer"
+          },
+          "userID": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "months": {
+            "type": "integer"
+          }
+        }
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string"
+          },
+          "notificationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "email",
+          "fullname",
+          "password",
+          "userID",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          }
+        }
+      },
+      "IncomesList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Income"
+        }
+      },
+      "ExpensesList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Expense"
+        }
+      },
+      "GoalsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Goal"
+        }
+      },
+      "NotificationsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Notification"
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request, account could not be created.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "The specified resource was not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "admin": {
+        "summary": "An example of a user",
+        "value": {
+          "userID": 1,
+          "username": "admin",
+          "fullname": "John Doe",
+          "password": "password",
+          "email": "johnDoe@example.com",
+          "age": 70
+        }
+      },
+      "income": {
+        "summary": "An example of income",
+        "value": {
+          "incomeID": 1,
+          "userID": 1,
+          "incomeAmount": 1000,
+          "incomeSource": "Invesment",
+          "incomeDescription": "Income investing on Google",
+          "incomeDate": "2017-07-21T17:32:28Z"
+        }
+      },
+      "incomeList": {
+        "summary": "An example of incomes list",
+        "value": [
+          {
+            "incomeID": 1,
+            "userID": 1,
+            "incomeAmount": 1000,
+            "incomeSource": "Invesment",
+            "incomeDescription": "Income investing on Google",
+            "incomeDate": "2017-07-21T17:32:28Z"
+          },
+          {
+            "incomeID": 2,
+            "userID": 1,
+            "incomeAmount": 800,
+            "incomeSource": "Salary",
+            "incomeDescription": "Income investing on Google",
+            "incomeDate": "2017-07-21T17:32:28Z"
+          }
+        ]
+      },
+      "expense": {
+        "summary": "An example of expense",
+        "value": {
+          "expenseID": 1,
+          "userID": 1,
+          "expenseAmount": 1000,
+          "expenseSource": "Booking.com",
+          "expenseDescription": "Expense from booking hotel room",
+          "expenseDate": "2017-07-21T17:32:28Z"
+        }
+      },
+      "expensesList": {
+        "summary": "An example of expenses list",
+        "value": [
+          {
+            "expenseID": 1,
+            "userID": 1,
+            "expenseAmount": 1000,
+            "expenseSource": "Booking.com",
+            "expenseDescription": "Expense from booking hotel room",
+            "expenseDate": "2017-07-21T17:32:28Z"
+          },
+          {
+            "expenseID": 2,
+            "userID": 1,
+            "expenseAmount": 30,
+            "expenseSource": "Supermarket",
+            "expenseDescription": "Expense from shopping",
+            "expenseDate": "2017-07-21T17:32:28Z"
+          }
+        ]
+      },
+      "goal": {
+        "summary": "An example of goal",
+        "value": {
+          "goalID": 1,
+          "userID": 1,
+          "amount": 5000,
+          "months": 6
+        }
+      },
+      "goalsList": {
+        "summary": "An example of goals list",
+        "value": [
+          {
+            "goalID": 1,
+            "userID": 1,
+            "amount": 1000,
+            "months": 1
+          },
+          {
+            "goalID": 2,
+            "userID": 1,
+            "amount": 5000,
+            "months": 6
+          }
+        ]
+      },
+      "notificationsList": {
+        "summary": "An example of notifications list",
+        "value": [
+          {
+            "userID": 1,
+            "text": "Υou have completed 25% of your monthly goal",
+            "notificationDate": "2017-07-21T17:32:28Z"
+          },
+          {
+            "userID": 1,
+            "text": "Be careful! Υou have spent over than 75% of your monthly income",
+            "notificationDate": "2017-07-21T17:32:28Z"
+          }
+        ]
+      },
+      "errorBadReq": {
+        "summary": "An example of error",
+        "value": {
+          "code": "400",
+          "message": "Bad Request"
+        }
+      },
+      "errorNotFound": {
+        "summary": "An example of error",
+        "value": {
+          "code": "404",
+          "message": "Not Found"
+        }
+      },
+      "errorConflict": {
+        "summary": "An example of error",
+        "value": {
+          "code": "409",
+          "message": "Conflict"
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "X-API-Key",
+        "in": "header"
+      },
+      "BearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
