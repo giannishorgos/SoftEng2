@@ -1,13 +1,16 @@
-import express from "express";
-
-const router = express/Router();
+const express = require('express');
+const router = express.Router();
 
 router.get('/', function(req, res){
-    res.send('GET route on personalInfo')
+    res.send('GET route on personalInfo');
 });
 
 router.post('/', function(req, res){
-    res.send('POST route on personalInfo')
+    res.send('POST route on personalInfo');
 });
 
-export default router;
+router.put('/', function(req, res){
+    res.send('PUT route on personalInfo');
+});
+
+module.exports = router;
