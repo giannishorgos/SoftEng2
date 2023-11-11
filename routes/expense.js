@@ -1,7 +1,5 @@
 const express = require('express');
-router = express.Router();
-
-router.get('/', (req, res) => {
+cosnouter.get('/', (req, res) => {
     res.send('Hello from expense.js');
 });
 
