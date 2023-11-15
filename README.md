@@ -5,7 +5,7 @@ Welcome to the Software Engineering II Project repository for the academic year 
 ## Overview
 This repository fulfills the requirements for the Software Engineering II Project, focusing on ***Agile Project*** Management Methodology. The naming convention of branches follows the ***GitFlow Workflow***.
 
-Check this article for [GitFlow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for more details.
+Check this article on [GitFlow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for more details.
 
 The node server is autogenereted using *SwaggerHub*. See details [below](#swagger-generated-server)!
 
