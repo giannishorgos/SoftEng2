@@ -4,11 +4,11 @@ const { deleteExpenseByID, getExpenseByID, getExpenses, putExpenseByID, postExpe
 test.before(t => {
     t.context.expected = {
         'application/json': {
-            "expenseID": 1,
-            "expenseAmount": 25.2525,
-            "expenseDate": "2010-10-10T10:10:10.000+00:00",
+            "expenseID": 0,
+            "expenseAmount": 1.4658129,
+            "expenseDate": "2000-01-23T04:56:07.000+00:00",
             "expenseSource": "expenseSource",
-            "userID": 10,
+            "userID": 6,
             "expenseDescription": "expenseDescription"
         }
     }
