@@ -24,8 +24,17 @@ test('getExpenseByID test', async t => {
     t.deepEqual(promise, t.context.expected['application/json'])
 })
 
-test.todo('getExpenses test')
+test('getExpenses test', async t => {
+    const promise = await getExpenses('test_user_id')
+    t.deepEqual(promise, Array(2).fill(t.context.expected['application/json']))
+})
 
-test.todo('putExpenseByID test')
+test.todo('putExpenseByID test', async t => {
+    const promise = await putExpenseByID('test_body', 'test_user_id', 'test_expense_id')
+    t.deepEqual(promise, t.context.expected['application/json'])
+})
 
-test.todo('postExpense test')
+test('postExpense test', async t => {
+    const promise = await postExpense('test_body', 'test_user_id')
+    t.deepEqual(promise, t.context.expected['application/json'])
+})
