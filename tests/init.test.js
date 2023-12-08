@@ -4,10 +4,10 @@ const {getGoalByID, getGoals, putGoal} = require('../service/GoalService')
 test.before(t => {
     t.context.expected = {
         'application/json': {
-            "goalID": 2,
-            "goalAmount": 2200,
-            "goalMonths": 2,
-            "userID": 2
+            "goalID": 0,
+            "goalAmount": 1.4658129,
+            "goalMonths": 5,
+            "userID": 6
         }
     };
 })
