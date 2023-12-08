@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "ava": "^6.0.1",
+    "c8": "^8.0.1",
     "connect": "^3.2.0",
     "js-yaml": "^3.3.0",
     "oas3-tools": "^2.2.3"
