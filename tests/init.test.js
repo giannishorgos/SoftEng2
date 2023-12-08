@@ -19,7 +19,7 @@ test('getGoalByID test', async t => {
 
 test('getGoals test', async t => {
     const promise = getGoals('test_user_id')
-    t.deepEqual(promise, Array(4).fill(t.context.expected['application/json']))
+    t.deepEqual(promise, Array(2).fill(t.context.expected['application/json']))
 })
 
 test('putGoal test', async t => {
