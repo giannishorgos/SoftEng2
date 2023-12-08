@@ -24,3 +24,8 @@ test('getExpenseByID test', async t => {
     t.deepEqual(promise, t.context.expected['application/json'])
 })
 
+test.todo('getExpenses test')
+
+test.todo('putExpenseByID test')
+
+test.todo('postExpense test')
