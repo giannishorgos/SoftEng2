@@ -1,5 +1,10 @@
 const test = require('ava')
-const { deleteIncomeBYID, getIncomeByID, getIncomes, putIncomebyID, postIncome } = require('../service/IncomeService')
+const { got } = require('got-cjs')
+const { deleteIncomeBYID,
+    getIncomeByID,
+    getIncomes,
+    putIncomebyID,
+    postIncome } = require('../service/IncomeService')
 
 test.before(t => {
     t.context.expected = {
@@ -12,6 +17,25 @@ test.before(t => {
             "incomeDescription": "incomeDescription"
         }
     };
+    t.context.endpoint_expected = [
+        {
+            incomeAmount: 1000,
+            incomeDate: '2017-07-21T17:32:28Z',
+            incomeDescription: 'Income investing on Google',
+            incomeID: 1,
+            incomeSource: 'Invesment',
+            userID: 1,
+        },
+        {
+            incomeAmount: 800,
+            incomeDate: '2017-07-21T17:32:28Z',
+            incomeDescription: 'Income investing on Google',
+            incomeID: 2,
+            incomeSource: 'Salary',
+            userID: 1,
+        },
+    ]
+    t.context.prefixUrl = "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/"
 })
 
 
@@ -45,4 +69,46 @@ test('postIncome test', async t => {
     const promise = await postIncome('test_body', 'test_user_id')
     t.deepEqual(promise, t.context.expected['application/json'])
 
+})
+
+
+test('GET Income test', async t => {
+    const response = await got('user/1/income', {
+        prefixUrl: t.context.prefixUrl
+    })
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected)
+    t.is(response.statusCode, 200)
+})
+
+test('POST Income test', async t => {
+    const response = await got.post('user/1/income', {
+        prefixUrl: t.context.prefixUrl,
+        json: t.context.endpoint_expected[0]
+    })
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected[0])
+    t.is(response.statusCode, 201)
+})
+
+test('GET Income ID test', async t => {
+    const response = await got('user/1/income/1', {
+        prefixUrl: t.context.prefixUrl,
+    })
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected[0])
+    t.is(response.statusCode, 200)
+})
+
+test('PUT Income test', async t => {
+    const response = await got.put('user/1/income/1', {
+        prefixUrl: t.context.prefixUrl,
+        json: t.context.endpoint_expected[0]
+    })
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected[0])
+    t.is(response.statusCode, 200)
+})
+
+test('DELETE Income test', async t => {
+    const response = await got.delete('user/1/income/1', {
+        prefixUrl: t.context.prefixUrl,
+    }).json()
+    t.deepEqual(response, '')
 })
