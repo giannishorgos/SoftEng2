@@ -1,6 +1,7 @@
 const test = require('ava')
 const { got } = require('got-cjs')
-const { deleteIncomeBYID,
+const {
+    deleteIncomeBYID,
     getIncomeByID,
     getIncomes,
     putIncomebyID,
