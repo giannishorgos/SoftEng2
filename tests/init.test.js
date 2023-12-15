@@ -1,4 +1,6 @@
 const test = require('ava')
+const sinon = require('sinon')
+
 const { got } = require('got-cjs')
 const {
     deleteIncomeBYID,
@@ -6,6 +8,10 @@ const {
     getIncomes,
     putIncomebyID,
     postIncome } = require('../service/IncomeService')
+
+const controller = require('../controllers/Income')
+
+const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
 
 test.before(t => {
     t.context.expected = {
@@ -37,9 +43,65 @@ test.before(t => {
         },
     ]
     t.context.prefixUrl = "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/"
+
+    t.context.response = body => ({
+        writeHead: (code, headers) => {
+            t.is(code, body.code)
+            t.is(headers['Content-Type'], 'application/json')
+        },
+        end: payload => {
+            t.deepEqual(JSON.parse(payload), body.payload)
+        }
+    })
+
+    t.context.response_controller = {
+        writeHead: (code, headers) => {
+            t.truthy(code)
+            t.is(headers['Content-Type'], 'application/json')
+        },
+        end: payload => {
+            t.truthy(JSON.parse(payload))
+        }
+    }
+
 })
 
+test.serial('ResponsePayload constructor Test', t => {
+    let code = 200, payload = { key: 'value' }
+    let response_obj = new ResponsePayload(code, payload)
 
+    t.true(response_obj instanceof ResponsePayload)
+    t.is(response_obj.code, code)
+    t.is(response_obj.payload, payload)
+})
+
+test('ReponsePayload factory Test', t => {
+    let code = 200, payload = { key: 'value' }
+
+    let respond = respondWithCode(code, payload)
+    t.true(respond instanceof ResponsePayload)
+    t.is(respond.code, code)
+    t.is(respond.payload, payload)
+
+})
+
+test.serial('writeJSON Test', t => {
+    let code = 200
+    let payload = { ...t.context.expected }
+
+    let body = respondWithCode(code, payload)
+    const response = { ...t.context.response(body) }
+    const response_code = {
+        ...response, end: payload => {
+            t.is(payload, body.code)
+        }
+    }
+    writeJson(response, body)
+    writeJson(response_code, 200, { message: 'status code in first arg' })
+    writeJson(response, body.payload)
+})
+
+// =================== SERVICES ================= 
 test('deleteIncomeBYID test', async t => {
     const promise = await deleteIncomeBYID('test_user_id', 'test_income_id')
     t.is(promise, undefined)
@@ -47,32 +109,64 @@ test('deleteIncomeBYID test', async t => {
 
 
 test('getIncomeByID test', async t => {
-    const promise = await getIncomeByID('test_user_id', 'test_income_id')
+    const promise = await getIncomeByID('test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
+
+    const no_data_promise = await getIncomeByID('test_user_id', 'test_income_id')
+    t.is(no_data_promise, undefined)
 })
 
 
 test('getIncomes test', async t => {
-    const promise = await getIncomes('test_user_id')
+    let examples = {}
+    examples['application/json'] = new Array(2).fill(t.context.expected['application/json'])
+    const promise = await getIncomes('test_user_id', examples)
     t.deepEqual(promise, Array(2).fill(t.context.expected['application/json']))
 
+    const no_data_promise = await getIncomes('test_user_id')
+    t.is(no_data_promise, undefined)
 })
 
 
 test('putIncomebyID test', async t => {
-    const promise = await putIncomebyID('test_body', 'test_user_id', 'test_income_id')
+    const promise = await putIncomebyID('test_body', 'test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
 
+    const no_data_promise = await putIncomebyID('test_user_id', 'test_income_id')
+    t.is(no_data_promise, undefined)
 })
 
 
 test('postIncome test', async t => {
-    const promise = await postIncome('test_body', 'test_user_id')
+    const promise = await postIncome('test_body', 'test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
 
+    const no_data_promise = await postIncome('test_user_id', 'test_income_id')
+    t.is(no_data_promise, undefined)
 })
 
+// =================== CONTROLLERS ================= 
 
+test('controller', async t => {
+    // mock func 
+    const examples = t.context.expected, user_id = 1
+    const Income = {
+        getIncomes: sinon.stub()
+    }
+    const utils = {
+        respondWithCode: (code, payload) => new ResponsePayload(code, payload),
+        writeJson: sinon.stub()
+    }
+    const res = { ...t.context.response_controller }
+    await controller.getIncomes('req', res, 'next', user_id, examples, Income, utils)
+    console.log("DEBUG")
+    console.log(Income.getIncomes.callCount)
+    console.log(Income.getIncomes.getCall(0).args)
+
+    t.true(Income.getIncomes.calledOnceWithExactly(user_id, examples))
+})
+
+// =================== ENDPOINTS =================== 
 test('GET Income test', async t => {
     const response = await got('user/1/income', {
         prefixUrl: t.context.prefixUrl
