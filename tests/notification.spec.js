@@ -17,14 +17,14 @@ test.before(t => {
 
     t.context.endpoint_expected = [ 
       {
-        text : 'You have reached your monthly goal',
+        text : 'Υou have completed 25% of your monthly goal',
         userID : 1,
-        notificationDate : '2023-09-21T04:56:07Z'
+        notificationDate : '2017-07-21T17:32:28Z'
       },
       {
-        text : 'You have spent 70% of your income this month',
+        text : 'Be careful! Υou have spent over than 75% of your monthly income',
         userID : 1,
-        notificationDate : "2023-09-21T04:56:07Z"
+        notificationDate : '2017-07-21T17:32:28Z'
       } 
     ]
 
