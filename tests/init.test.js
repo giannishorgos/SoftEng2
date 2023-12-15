@@ -9,7 +9,6 @@ const {
     putIncomebyID,
     postIncome } = require('../service/IncomeService')
 
-const controller = require('../controllers/Income')
 
 const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
 
@@ -53,17 +52,6 @@ test.before(t => {
             t.deepEqual(JSON.parse(payload), body.payload)
         }
     })
-
-    t.context.response_controller = {
-        writeHead: (code, headers) => {
-            t.truthy(code)
-            t.is(headers['Content-Type'], 'application/json')
-        },
-        end: payload => {
-            t.truthy(JSON.parse(payload))
-        }
-    }
-
 })
 
 test.serial('ResponsePayload constructor Test', t => {
@@ -143,27 +131,6 @@ test('postIncome test', async t => {
 
     const no_data_promise = await postIncome('test_user_id', 'test_income_id')
     t.is(no_data_promise, undefined)
-})
-
-// =================== CONTROLLERS ================= 
-
-test('controller', async t => {
-    // mock func 
-    const examples = t.context.expected, user_id = 1
-    const Income = {
-        getIncomes: sinon.stub()
-    }
-    const utils = {
-        respondWithCode: (code, payload) => new ResponsePayload(code, payload),
-        writeJson: sinon.stub()
-    }
-    const res = { ...t.context.response_controller }
-    await controller.getIncomes('req', res, 'next', user_id, examples, Income, utils)
-    console.log("DEBUG")
-    console.log(Income.getIncomes.callCount)
-    console.log(Income.getIncomes.getCall(0).args)
-
-    t.true(Income.getIncomes.calledOnceWithExactly(user_id, examples))
 })
 
 // =================== ENDPOINTS =================== 

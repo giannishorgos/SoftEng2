@@ -24,11 +24,10 @@ module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, in
         });
 };
 
-module.exports.getIncomes = function getIncomes(req, res, next, userID, examples = {}) {
-    console.log('MPkhka sto income controller')
-    Income.getIncomes(userID, examples)
+module.exports.getIncomes = function getIncomes(req, res, next, userID) {
+    Income.getIncomes(userID)
         .then(function(response) {
-            utils.writeJson(res, utils.respondWithCode(200, response));
+            utils.writeJson(res, response);
         })
         .catch(function(response) {
             utils.writeJson(res, response);
