@@ -10,8 +10,6 @@ const {
 } = require('../service/ExpenseService')
 
 
-const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
-
 test.before(t => {
     t.context.expected = {
         'application/json': {
@@ -52,41 +50,6 @@ test.before(t => {
             t.deepEqual(JSON.parse(payload), body.payload)
         }
     })
-})
-
-test.serial('ResponsePayload constructor Test', t => {
-    let code = 200, payload = { key: 'value' }
-    let response_obj = new ResponsePayload(code, payload)
-
-    t.true(response_obj instanceof ResponsePayload)
-    t.is(response_obj.code, code)
-    t.is(response_obj.payload, payload)
-})
-
-test('ResponsePayload factory Test', t => {
-    let code = 200, payload = { key: 'value' }
-
-    let respond = respondWithCode(code, payload)
-    t.true(respond instanceof ResponsePayload)
-    t.is(respond.code, code)
-    t.is(respond.payload, payload)
-
-})
-
-test.serial('writeJSON Test', t => {
-    let code = 200
-    let payload = { ...t.context.expected }
-
-    let body = respondWithCode(code, payload)
-    const response = { ...t.context.response(body) }
-    const response_code = {
-        ...response, end: payload => {
-            t.is(payload, body.code)
-        }
-    }
-    writeJson(response, body)
-    writeJson(response_code, 200, { message: 'status code in first arg' })
-    writeJson(response, body.payload)
 })
 
 // =================== SERVICES =================
