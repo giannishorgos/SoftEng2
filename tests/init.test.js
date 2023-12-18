@@ -1,6 +1,4 @@
 const test = require('ava')
-const sinon = require('sinon')
-
 const { got } = require('got-cjs')
 const {
     deleteIncomeBYID,
@@ -12,7 +10,7 @@ const {
 
 const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
 
-test.before(t => {
+test.before(async t => {
     t.context.expected = {
         'application/json': {
             "incomeID": 0,
