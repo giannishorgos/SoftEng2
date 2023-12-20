@@ -1,7 +1,7 @@
 const test = require('ava')
 
 const { got } = require('got-cjs')
-const {getGoalByID, getGoals, putGoal} = require('../service/GoalService')
+const { getGoalByID, getGoals, putGoal } = require('../service/GoalService')
 
 test.before(t => {
     t.context.expected = {
@@ -14,19 +14,26 @@ test.before(t => {
     };
     t.context.endpoint_expected = [
         {
-            amount : 1000,
-            goalID : 1,
-            months : 1,
-            userID : 1
+            amount: 1000,
+            goalID: 1,
+            months: 1,
+            userID: 1
         },
         {
-            amount : 5000,
-            goalID : 2,
-            months : 6,
-            userID : 1
+            amount: 5000,
+            goalID: 2,
+            months: 6,
+            userID: 1
         },
     ]
-    t.context.prefixUrl = "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/"
+    t.context.endpoint_expected_id =
+    {
+        amount: 5000,
+        goalID: 1,
+        months: 6,
+        userID: 1
+    },
+        t.context.prefixUrl = "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/"
 })
 
 // =================== SERVICES =================
@@ -61,7 +68,7 @@ test('GET Goal ID test', async t => {
     const response = await got('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,
     })
-    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected[0])
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected_id)
     t.is(response.statusCode, 200)
 })
 
@@ -76,8 +83,8 @@ test('GET Goal test', async t => {
 test('PUT Goal test', async t => {
     const response = await got.put('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,
-        json: t.context.endpoint_expected[0]
+        json: t.context.endpoint_expected[1]
     })
-    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected[0])
+    t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected_id)
     t.is(response.statusCode, 200)
 })
