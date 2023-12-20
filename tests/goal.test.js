@@ -64,7 +64,7 @@ test('putGoal test', async t => {
 })
 
 // =================== ENDPOINTS ===================
-test('GET Goal ID test', async t => {
+test.serial('GET Goal ID test', async t => {
     const response = await got('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,
     })
@@ -72,7 +72,7 @@ test('GET Goal ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('GET Goal test', async t => {
+test.serial('GET Goal test', async t => {
     const response = await got('user/1/goal', {
         prefixUrl: t.context.prefixUrl
     })
@@ -80,7 +80,7 @@ test('GET Goal test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('PUT Goal test', async t => {
+test.serial('PUT Goal test', async t => {
     const response = await got.put('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected[1]

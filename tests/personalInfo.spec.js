@@ -5,12 +5,12 @@ const { getPersonalInfo, postPersonalInfo, putPersonalInfo } = require('../servi
 test.before(t => {
     t.context.expected = {
         'application/json': {
-            "password" : 'password',
-            "fullname" : 'fullname',
-            "userID" : 0,
-            "email" : 'email',
-            "age" : 6,
-            "username" : 'username',
+            "password": 'password',
+            "fullname": 'fullname',
+            "userID": 0,
+            "email": 'email',
+            "age": 6,
+            "username": 'username',
         }
     };
     t.context.endpoint_expected = {
@@ -58,7 +58,7 @@ test('putPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
-test('GET Personal Info test', async t => {
+test.serial('GET Personal Info test', async t => {
     const response = await got('user/1/personalinfo', {
         prefixUrl: t.context.prefixUrl
     })
@@ -66,7 +66,7 @@ test('GET Personal Info test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('POST Personal Info test', async t => {
+test.serial('POST Personal Info test', async t => {
     const response = await got.post('user/personalinfo', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected
@@ -75,7 +75,7 @@ test('POST Personal Info test', async t => {
     t.is(response.statusCode, 201)
 })
 
-test('PUT Personal Info test', async t => {
+test.serial('PUT Personal Info test', async t => {
     const response = await got.put('user/1/personalinfo', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected

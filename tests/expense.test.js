@@ -97,7 +97,7 @@ test('postExpense test', async t => {
 })
 
 // =================== ENDPOINTS ===================
-test('GET Expense test', async t => {
+test.serial('GET Expense test', async t => {
     const response = await got('user/1/expense', {
         prefixUrl: t.context.prefixUrl
     })
@@ -105,7 +105,7 @@ test('GET Expense test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('POST Expense test', async t => {
+test.serial('POST Expense test', async t => {
     const response = await got.post('user/1/expense', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected[0]
@@ -114,7 +114,7 @@ test('POST Expense test', async t => {
     t.is(response.statusCode, 201)
 })
 
-test('GET Expense ID test', async t => {
+test.serial('GET Expense ID test', async t => {
     const response = await got('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,
     })
@@ -122,7 +122,7 @@ test('GET Expense ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('PUT Expense test', async t => {
+test.serial('PUT Expense test', async t => {
     const response = await got.put('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected[0]
@@ -131,7 +131,7 @@ test('PUT Expense test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('DELETE Expense test', async t => {
+test.serial('DELETE Expense test', async t => {
     const response = await got.delete('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,
     }).json()

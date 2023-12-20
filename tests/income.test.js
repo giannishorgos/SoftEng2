@@ -8,7 +8,6 @@ const {
     postIncome } = require('../service/IncomeService')
 
 
-const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
 
 test.before(async t => {
     t.context.expected = {
@@ -41,51 +40,8 @@ test.before(async t => {
     ]
     t.context.prefixUrl = "https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/"
 
-    t.context.response = body => ({
-        writeHead: (code, headers) => {
-            t.is(code, body.code)
-            t.is(headers['Content-Type'], 'application/json')
-        },
-        end: payload => {
-            t.deepEqual(JSON.parse(payload), body.payload)
-        }
-    })
 })
 
-test.serial('ResponsePayload constructor Test', t => {
-    let code = 200, payload = { key: 'value' }
-    let response_obj = new ResponsePayload(code, payload)
-
-    t.true(response_obj instanceof ResponsePayload)
-    t.is(response_obj.code, code)
-    t.is(response_obj.payload, payload)
-})
-
-test('ReponsePayload factory Test', t => {
-    let code = 200, payload = { key: 'value' }
-
-    let respond = respondWithCode(code, payload)
-    t.true(respond instanceof ResponsePayload)
-    t.is(respond.code, code)
-    t.is(respond.payload, payload)
-
-})
-
-test.serial('writeJSON Test', t => {
-    let code = 200
-    let payload = { ...t.context.expected }
-
-    let body = respondWithCode(code, payload)
-    const response = { ...t.context.response(body) }
-    const response_code = {
-        ...response, end: payload => {
-            t.is(payload, body.code)
-        }
-    }
-    writeJson(response, body)
-    writeJson(response_code, 200, { message: 'status code in first arg' })
-    writeJson(response, body.payload)
-})
 
 // =================== SERVICES ================= 
 test('deleteIncomeBYID test', async t => {
@@ -132,7 +88,7 @@ test('postIncome test', async t => {
 })
 
 // =================== ENDPOINTS =================== 
-test('GET Income test', async t => {
+test.serial('GET Income test', async t => {
     const response = await got('user/1/income', {
         prefixUrl: t.context.prefixUrl
     })
@@ -140,7 +96,7 @@ test('GET Income test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('POST Income test', async t => {
+test.serial('POST Income test', async t => {
     const response = await got.post('user/1/income', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected[0]
@@ -149,7 +105,7 @@ test('POST Income test', async t => {
     t.is(response.statusCode, 201)
 })
 
-test('GET Income ID test', async t => {
+test.serial('GET Income ID test', async t => {
     const response = await got('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,
     })
@@ -157,7 +113,7 @@ test('GET Income ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('PUT Income test', async t => {
+test.serial('PUT Income test', async t => {
     const response = await got.put('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,
         json: t.context.endpoint_expected[0]
@@ -166,7 +122,7 @@ test('PUT Income test', async t => {
     t.is(response.statusCode, 200)
 })
 
-test('DELETE Income test', async t => {
+test.serial('DELETE Income test', async t => {
     const response = await got.delete('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,
     }).json()
