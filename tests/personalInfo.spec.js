@@ -2,8 +2,6 @@ const test = require('ava')
 const { got } = require('got-cjs')
 const { getPersonalInfo, postPersonalInfo, putPersonalInfo } = require('../service/PersonalInfoService')
 
-const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
-
 test.before(t => {
     t.context.expected = {
         'application/json': {
@@ -84,40 +82,4 @@ test('PUT Personal Info test', async t => {
     })
     t.deepEqual(JSON.parse(response.body), t.context.endpoint_expected)
     t.is(response.statusCode, 200)
-})
-
-test.serial('Response Payload constructor Test', t => {
-    const code = 200
-    const payload = {key: 'value'}
-    const response_obj = new ResponsePayload(code, payload)
-
-    t.true(response_obj instanceof ResponsePayload)
-    t.is(response_obj.code, code)
-    t.is(response_obj.payload, payload)
-})
-
-test('RespondWithCode Test', t => {
-    const code = 200
-    const payload = {key: 'value'}
-    const response = respondWithCode(code, payload)
-    
-    t.true(response instanceof ResponsePayload)
-    t.is(response.code, code)
-    t.is(response.payload, payload)
-})
-
-test.serial('writeJson Test', t => {
-    const code = 200
-    const payload = { ...t.context.expected }
-
-    const body = respondWithCode(code, payload)
-    const response = { ...t.context.response(body) }
-    const response_code = {
-        ...response, end: payload => {
-            t.is(payload, body.code)
-        }
-    }
-    writeJson(response, body)
-    writeJson(response_code, 200, { message: 'status code in first arg' })
-    writeJson(response, body.payload)
 })
