@@ -2,8 +2,6 @@ const test = require('ava')
 const { got } = require('got-cjs')
 const { getNotifications } = require('../service/NotificationService')
 
-const { ResponsePayload, respondWithCode, writeJson } = require('../utils/writer')
-
 test.before(t => {
     t.context.expected = {
         'application/json': [ {
