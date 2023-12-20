@@ -8,10 +8,10 @@
  * incomeID Integer 
  * no response value expected for this operation
  **/
-exports.deleteIncomeBYID = function(userID,incomeID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteIncomeBYID = function(userID, incomeID) {
+    return new Promise(function(resolve, reject) {
+        resolve();
+    });
 }
 
 
@@ -22,23 +22,14 @@ exports.deleteIncomeBYID = function(userID,incomeID) {
  * incomeID Integer 
  * returns Income
  **/
-exports.getIncomeByID = function(userID,incomeID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "incomeID" : 0,
-  "incomeAmount" : 1.4658129,
-  "incomeDate" : "2000-01-23T04:56:07.000+00:00",
-  "incomeSource" : "incomeSource",
-  "userID" : 6,
-  "incomeDescription" : "incomeDescription"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.getIncomeByID = function(userID, incomeID, examples = {}) {
+    return new Promise(function(resolve, reject) {
+        if (Object.keys(examples).length > 0) {
+            resolve(examples[Object.keys(examples)[0]]);
+        } else {
+            resolve();
+        }
+    });
 }
 
 
@@ -48,32 +39,15 @@ exports.getIncomeByID = function(userID,incomeID) {
  * userID Integer 
  * returns IncomesList
  **/
-exports.getIncomes = function(userID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "incomeID" : 0,
-  "incomeAmount" : 1.4658129,
-  "incomeDate" : "2000-01-23T04:56:07.000+00:00",
-  "incomeSource" : "incomeSource",
-  "userID" : 6,
-  "incomeDescription" : "incomeDescription"
-}, {
-  "incomeID" : 0,
-  "incomeAmount" : 1.4658129,
-  "incomeDate" : "2000-01-23T04:56:07.000+00:00",
-  "incomeSource" : "incomeSource",
-  "userID" : 6,
-  "incomeDescription" : "incomeDescription"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.getIncomes = function(userID, examples = {}) {
+    return new Promise(function(resolve, reject) {
+        if (Object.keys(examples).length > 0) {
+            resolve(examples[Object.keys(examples)[0]]);
+        } else {
+            resolve();
+        }
+    });
 }
-
 
 /**
  * Create an income entry.
@@ -82,23 +56,14 @@ exports.getIncomes = function(userID) {
  * userID Integer 
  * returns Income
  **/
-exports.postIncome = function(body,userID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "incomeID" : 0,
-  "incomeAmount" : 1.4658129,
-  "incomeDate" : "2000-01-23T04:56:07.000+00:00",
-  "incomeSource" : "incomeSource",
-  "userID" : 6,
-  "incomeDescription" : "incomeDescription"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.postIncome = function(body, userID, examples = {}) {
+    return new Promise(function(resolve, reject) {
+        if (Object.keys(examples).length > 0) {
+            resolve(examples[Object.keys(examples)[0]]);
+        } else {
+            resolve();
+        }
+    });
 }
 
 
@@ -110,22 +75,13 @@ exports.postIncome = function(body,userID) {
  * incomeID Integer 
  * returns Income
  **/
-exports.putIncomebyID = function(body,userID,incomeID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "incomeID" : 0,
-  "incomeAmount" : 1.4658129,
-  "incomeDate" : "2000-01-23T04:56:07.000+00:00",
-  "incomeSource" : "incomeSource",
-  "userID" : 6,
-  "incomeDescription" : "incomeDescription"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.putIncomebyID = function(body, userID, incomeID, examples = {}) {
+    return new Promise(function(resolve, reject) {
+        if (Object.keys(examples).length > 0) {
+            resolve(examples[Object.keys(examples)[0]]);
+        } else {
+            resolve();
+        }
+    });
 }
 
