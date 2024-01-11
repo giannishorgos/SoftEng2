@@ -36,6 +36,7 @@ test('ReponsePayload factory Test', t => {
 
 })
 
+// Writer Test
 test('writeJSON Test', t => {
     let code = 200
     let payload = { ...t.context.expected }

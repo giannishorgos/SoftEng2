@@ -4,6 +4,7 @@ var ResponsePayload = exports.ResponsePayload = function(code, payload) {
   this.payload = payload;
 }
 
+// respondWithCode variable
 exports.respondWithCode = function(code, payload) {
     return new ResponsePayload(code, payload);
 }
@@ -33,7 +34,7 @@ var writeJson = exports.writeJson = function(response, arg1, arg2) {
     }
 
     if (!code) {
-        // if no response code given, we  efault to 200
+        // if no response code given, we return default 200
         code = 200;
     }
     if (typeof payload === 'object') {
