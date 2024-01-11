@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var PersonalInfo = require('../service/PersonalInfoService');
 
+// Get Personal-Info
 module.exports.getPersonalInfo = function getPersonalInfo (req, res, next, userID) {
   PersonalInfo.getPersonalInfo(userID)
     .then(function (response) {
@@ -13,6 +14,7 @@ module.exports.getPersonalInfo = function getPersonalInfo (req, res, next, userI
     });
 };
 
+// Post Personal-Info
 module.exports.postPersonalInfo = function postPersonalInfo (req, res, next, body) {
   PersonalInfo.postPersonalInfo(body)
     .then(function (response) {
@@ -23,6 +25,7 @@ module.exports.postPersonalInfo = function postPersonalInfo (req, res, next, bod
     });
 };
 
+// Put Personal-Info
 module.exports.putPersonalInfo = function putPersonalInfo (req, res, next, body, userID) {
   PersonalInfo.putPersonalInfo(body, userID)
     .then(function (response) {

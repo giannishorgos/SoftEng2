@@ -31,6 +31,7 @@ test.before(t => {
     t.context.prefixUrl = 'https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/'
 })
 
+// Get Notifications Test
 test('getNotifications test', async t => {
     const promise = await getNotifications('test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])

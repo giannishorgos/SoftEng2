@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var Goal = require('../service/GoalService');
 
+// Get Goal By ID
 module.exports.getGoalByID = function getGoalByID (req, res, next, userID, goalID) {
   Goal.getGoalByID(userID, goalID)
     .then(function (response) {
@@ -13,6 +14,7 @@ module.exports.getGoalByID = function getGoalByID (req, res, next, userID, goalI
     });
 };
 
+// Get Goals
 module.exports.getGoals = function getGoals (req, res, next, userID) {
   Goal.getGoals(userID)
     .then(function (response) {
@@ -23,6 +25,7 @@ module.exports.getGoals = function getGoals (req, res, next, userID) {
     });
 };
 
+// Put Goal
 module.exports.putGoal = function putGoal (req, res, next, body, userID, goalID) {
   Goal.putGoal(body, userID, goalID)
     .then(function (response) {

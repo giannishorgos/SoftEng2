@@ -1,14 +1,14 @@
-var ResponsePayload =  function(code, payload) {
+// ResponsePayload variable
+var ResponsePayload = exports.ResponsePayload = function(code, payload) {
   this.code = code;
   this.payload = payload;
 }
-
-exports.ResponsePayload = ResponsePayload
 
 exports.respondWithCode = function(code, payload) {
     return new ResponsePayload(code, payload);
 }
 
+// writeJson Variable
 var writeJson = exports.writeJson = function(response, arg1, arg2) {
     var code;
     var payload;

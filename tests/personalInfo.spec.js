@@ -34,6 +34,7 @@ test.before(t => {
     })
 })
 
+// Get Personal Info Test
 test('getPersonalInfo test', async t => {
     const promise = await getPersonalInfo('test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -42,6 +43,7 @@ test('getPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Post Personal Info Test
 test('postPersonalInfo test', async t => {
     const promise = await postPersonalInfo('test_body', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -50,6 +52,7 @@ test('postPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Put Personal Info Test
 test('putPersonalInfo test', async t => {
     const promise = await putPersonalInfo('test_body', 'test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
