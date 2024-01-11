@@ -1,7 +1,9 @@
-var ResponsePayload = exports.ResponsePayload =  function(code, payload) {
+exports.ResponsePayload =  function(code, payload) {
   this.code = code;
   this.payload = payload;
 }
+
+var ResponsePayload = exports.ResponsePayload
 
 exports.respondWithCode = function(code, payload) {
     return new ResponsePayload(code, payload);
