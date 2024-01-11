@@ -1,5 +1,6 @@
 'use strict';
 
+// Variables
 var utils = require('../utils/writer.js');
 var Notification = require('../service/NotificationService');
 
