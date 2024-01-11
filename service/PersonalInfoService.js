@@ -7,17 +7,8 @@
  * userID Integer 
  * returns User
  **/
-exports.getPersonalInfo = function(userID) {
+exports.getPersonalInfo = function(userID, examples = {}) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password" : "password",
-  "fullname" : "fullname",
-  "userID" : 0,
-  "email" : "email",
-  "age" : 6,
-  "username" : "username"
-};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -33,17 +24,8 @@ exports.getPersonalInfo = function(userID) {
  * body User User Shema
  * returns User
  **/
-exports.postPersonalInfo = function(body) {
+exports.postPersonalInfo = function(body, examples = {}) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password" : "password",
-  "fullname" : "fullname",
-  "userID" : 0,
-  "email" : "email",
-  "age" : 6,
-  "username" : "username"
-};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -60,17 +42,8 @@ exports.postPersonalInfo = function(body) {
  * userID Integer 
  * returns User
  **/
-exports.putPersonalInfo = function(body,userID) {
+exports.putPersonalInfo = function(body,userID, examples = {}) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password" : "password",
-  "fullname" : "fullname",
-  "userID" : 0,
-  "email" : "email",
-  "age" : 6,
-  "username" : "username"
-};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
