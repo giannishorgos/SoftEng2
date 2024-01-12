@@ -34,6 +34,7 @@ test.before(t => {
     })
 })
 
+// Get Personal Info Test Service
 test('getPersonalInfo test', async t => {
     const promise = await getPersonalInfo('test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -42,6 +43,7 @@ test('getPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Post Personal Info Test Service
 test('postPersonalInfo test', async t => {
     const promise = await postPersonalInfo('test_body', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -50,6 +52,7 @@ test('postPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Put Personal Info Test Service
 test('putPersonalInfo test', async t => {
     const promise = await putPersonalInfo('test_body', 'test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -58,6 +61,7 @@ test('putPersonalInfo test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Get Personal Info Test Endpoint
 test.serial('GET Personal Info test', async t => {
     const response = await got('user/1/personalinfo', {
         prefixUrl: t.context.prefixUrl
@@ -66,6 +70,7 @@ test.serial('GET Personal Info test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Post Personal Info Test Endpoint
 test.serial('POST Personal Info test', async t => {
     const response = await got.post('user/personalinfo', {
         prefixUrl: t.context.prefixUrl,
@@ -75,6 +80,7 @@ test.serial('POST Personal Info test', async t => {
     t.is(response.statusCode, 201)
 })
 
+// Put Personal Info Test Endpoint
 test.serial('PUT Personal Info test', async t => {
     const response = await got.put('user/1/personalinfo', {
         prefixUrl: t.context.prefixUrl,

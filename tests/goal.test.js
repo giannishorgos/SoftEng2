@@ -37,6 +37,7 @@ test.before(t => {
 })
 
 // =================== SERVICES =================
+// Get Goal By ID Test Service
 test('getGoalByID test', async t => {
     const promise = await getGoalByID('test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -45,6 +46,7 @@ test('getGoalByID test', async t => {
     t.is(no_data_promise, undefined)
 })
 
+// Get Goals Test Service
 test('getGoals test', async t => {
     let examples = {}
     examples['application/json'] = new Array(2).fill(t.context.expected['application/json'])
@@ -55,6 +57,7 @@ test('getGoals test', async t => {
     t.is(no_data_promise, undefined)
 })
 
+// Put Goal Test Service
 test('putGoal test', async t => {
     const promise = await putGoal('test_body', 'test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -64,6 +67,7 @@ test('putGoal test', async t => {
 })
 
 // =================== ENDPOINTS ===================
+// Get Goal ID Test Endpoint
 test.serial('GET Goal ID test', async t => {
     const response = await got('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,
@@ -72,6 +76,7 @@ test.serial('GET Goal ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Get Goal Test Endpoint
 test.serial('GET Goal test', async t => {
     const response = await got('user/1/goal', {
         prefixUrl: t.context.prefixUrl
@@ -80,6 +85,7 @@ test.serial('GET Goal test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Put Goal Test Endpoint
 test.serial('PUT Goal test', async t => {
     const response = await got.put('user/1/goal/0', {
         prefixUrl: t.context.prefixUrl,

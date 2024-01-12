@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var Income = require('../service/IncomeService');
 
+// Delete Income By ID
 module.exports.deleteIncomeBYID = function deleteIncomeBYID(req, res, next, userID, incomeID) {
     Income.deleteIncomeBYID(userID, incomeID)
         .then(function(response) {
@@ -13,6 +14,7 @@ module.exports.deleteIncomeBYID = function deleteIncomeBYID(req, res, next, user
         });
 };
 
+// Get Income By ID
 module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, incomeID) {
     return Income.getIncomeByID(userID, incomeID)
         .then(function(response) {
@@ -24,6 +26,7 @@ module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, in
         });
 };
 
+// Get Incomes
 module.exports.getIncomes = function getIncomes(req, res, next, userID) {
     Income.getIncomes(userID)
         .then(function(response) {
@@ -34,6 +37,7 @@ module.exports.getIncomes = function getIncomes(req, res, next, userID) {
         });
 };
 
+// Post Income
 module.exports.postIncome = function postIncome(req, res, next, body, userID) {
     Income.postIncome(body, userID)
         .then(function(response) {
@@ -44,6 +48,7 @@ module.exports.postIncome = function postIncome(req, res, next, body, userID) {
         });
 };
 
+// Put Income By ID
 module.exports.putIncomebyID = function putIncomebyID(req, res, next, body, userID, incomeID) {
     Income.putIncomebyID(body, userID, incomeID)
         .then(function(response) {
