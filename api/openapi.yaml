@@ -4,24 +4,24 @@ info:
   description: The API for the EXPENSR Project.
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0
-  description: SwaggerHub API Auto Mocking
+  - url: https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0
+    description: SwaggerHub API Auto Mocking
 tags:
-- name: PersonalInfo
-  description: PersonalInfo endpoints
-- name: Income
-  description: Income endpoints
-- name: Expense
-  description: Expense endpoints
-- name: Goal
-  description: Goal endpoints
-- name: Notification
-  description: Notification endpoints
+  - name: PersonalInfo
+    description: PersonalInfo endpoints
+  - name: Income
+    description: Income endpoints
+  - name: Expense
+    description: Expense endpoints
+  - name: Goal
+    description: Goal endpoints
+  - name: Notification
+    description: Notification endpoints
 paths:
   /user/personalinfo:
     post:
       tags:
-      - PersonalInfo
+        - PersonalInfo
       summary: Post personal info when creating account
       operationId: postPersonalInfo
       requestBody:
@@ -29,10 +29,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
             examples:
               admin:
-                $ref: '#/components/examples/admin'
+                $ref: "#/components/examples/admin"
         required: true
       responses:
         "201":
@@ -40,102 +40,102 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
               examples:
                 admin:
-                  $ref: '#/components/examples/admin'
+                  $ref: "#/components/examples/admin"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "409":
           description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorConflict'
+                  $ref: "#/components/examples/errorConflict"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: PersonalInfoController
   /user/{userID}/personalinfo:
     get:
       tags:
-      - PersonalInfo
+        - PersonalInfo
       summary: Get personal info to display in profile page.
       operationId: getPersonalInfo
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
               examples:
                 admin:
-                  $ref: '#/components/examples/admin'
+                  $ref: "#/components/examples/admin"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: PersonalInfoController
     put:
       tags:
-      - PersonalInfo
+        - PersonalInfo
       summary: Edit personal info.
       operationId: putPersonalInfo
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: User Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
             examples:
               admin:
-                $ref: '#/components/examples/admin'
+                $ref: "#/components/examples/admin"
         required: true
       responses:
         "200":
@@ -143,102 +143,102 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
               examples:
                 admin:
-                  $ref: '#/components/examples/admin'
+                  $ref: "#/components/examples/admin"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: PersonalInfoCOntroller
   /user/{userID}/income:
     get:
       tags:
-      - Income
+        - Income
       summary: Get incomes list for a specific user.
       operationId: getIncomes
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, incomes list was loaded succesfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IncomesList'
+                $ref: "#/components/schemas/IncomesList"
               examples:
                 incomesList:
-                  $ref: '#/components/examples/incomeList'
+                  $ref: "#/components/examples/incomeList"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: IncomeController
     post:
       tags:
-      - Income
+        - Income
       summary: Create an income entry.
       operationId: postIncome
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: Income Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Income'
+              $ref: "#/components/schemas/Income"
             examples:
               income:
-                $ref: '#/components/examples/income'
+                $ref: "#/components/examples/income"
         required: true
       responses:
         "201":
@@ -246,120 +246,120 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Income'
+                $ref: "#/components/schemas/Income"
               examples:
                 income:
-                  $ref: '#/components/examples/income'
+                  $ref: "#/components/examples/income"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "409":
           description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorConflict'
+                  $ref: "#/components/examples/errorConflict"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: IncomeController
   /user/{userID}/income/{incomeID}:
     get:
       tags:
-      - Income
+        - Income
       summary: Get one income entry.
       operationId: getIncomeByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: incomeID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: incomeID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, income was loaded successfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Income'
+                $ref: "#/components/schemas/Income"
               examples:
                 income:
-                  $ref: '#/components/examples/income'
+                  $ref: "#/components/examples/income"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: IncomeController
     put:
       tags:
-      - Income
+        - Income
       summary: Edit one income entry.
       operationId: putIncomebyID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: incomeID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: incomeID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: Income Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Income'
+              $ref: "#/components/schemas/Income"
             examples:
               income:
-                $ref: '#/components/examples/income'
+                $ref: "#/components/examples/income"
         required: true
       responses:
         "200":
@@ -367,55 +367,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Income'
+                $ref: "#/components/schemas/Income"
               examples:
                 income:
-                  $ref: '#/components/examples/income'
+                  $ref: "#/components/examples/income"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: IncomeController
     delete:
       tags:
-      - Income
+        - Income
       summary: Delete one income entry.
-      operationId: deleteIncomeBYID
+      operationId: deleteIncomeByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: incomeID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: incomeID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, income was deleted successfully."
@@ -424,93 +424,93 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: IncomeController
   /user/{userID}/expense:
     get:
       tags:
-      - Expense
+        - Expense
       summary: Get expenses list for a specific user.
       operationId: getExpenses
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, expenses list was loaded succesfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExpensesList'
+                $ref: "#/components/schemas/ExpensesList"
               examples:
                 expensesList:
-                  $ref: '#/components/examples/expensesList'
+                  $ref: "#/components/examples/expensesList"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: ExpenseController
     post:
       tags:
-      - Expense
+        - Expense
       summary: Create one expense entry.
       operationId: postExpense
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: Expense Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Expense'
+              $ref: "#/components/schemas/Expense"
             examples:
               expense:
-                $ref: '#/components/examples/expense'
+                $ref: "#/components/examples/expense"
         required: true
       responses:
         "201":
@@ -518,120 +518,120 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Expense'
+                $ref: "#/components/schemas/Expense"
               examples:
                 expense:
-                  $ref: '#/components/examples/expense'
+                  $ref: "#/components/examples/expense"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "409":
           description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorConflict'
+                  $ref: "#/components/examples/errorConflict"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: ExpenseController
   /user/{userID}/expense/{expenseID}:
     get:
       tags:
-      - Expense
+        - Expense
       summary: Get one expense entry.
       operationId: getExpenseByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: expenseID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: expenseID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, expense was loaded successfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Expense'
+                $ref: "#/components/schemas/Expense"
               examples:
                 expense:
-                  $ref: '#/components/examples/expense'
+                  $ref: "#/components/examples/expense"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: ExpenseController
     put:
       tags:
-      - Expense
+        - Expense
       summary: Edit one expense entry.
       operationId: putExpenseByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: expenseID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: expenseID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: Expense Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Expense'
+              $ref: "#/components/schemas/Expense"
             examples:
               expense:
-                $ref: '#/components/examples/expense'
+                $ref: "#/components/examples/expense"
         required: true
       responses:
         "200":
@@ -639,55 +639,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Expense'
+                $ref: "#/components/schemas/Expense"
               examples:
                 expense:
-                  $ref: '#/components/examples/expense'
+                  $ref: "#/components/examples/expense"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: ExpenseController
     delete:
       tags:
-      - Expense
+        - Expense
       summary: Delete one expense entry.
       operationId: deleteExpenseByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: expenseID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: expenseID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, expense was deleted successfully."
@@ -696,158 +696,158 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: ExpenseController
   /user/{userID}/goal:
     get:
       tags:
-      - Goal
+        - Goal
       summary: Get goals list for a specific user.
       operationId: getGoals
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, goals list was loaded successfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GoalsList'
+                $ref: "#/components/schemas/GoalsList"
               examples:
                 goalsList:
-                  $ref: '#/components/examples/goalsList'
+                  $ref: "#/components/examples/goalsList"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: GoalController
   /user/{userID}/goal/{goalID}:
     get:
       tags:
-      - Goal
+        - Goal
       summary: Get one goal entry.
       operationId: getGoalByID
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: goalID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: goalID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: "Success, goal was loaded successfully."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Goal'
+                $ref: "#/components/schemas/Goal"
               examples:
                 goal:
-                  $ref: '#/components/examples/goal'
+                  $ref: "#/components/examples/goal"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: GoalController
     put:
       tags:
-      - Goal
+        - Goal
       summary: Edit one goal entry.
       operationId: putGoal
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
-      - name: goalID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
+        - name: goalID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       requestBody:
         description: Goal Shema
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Goal'
+              $ref: "#/components/schemas/Goal"
             examples:
               goal:
-                $ref: '#/components/examples/goal'
+                $ref: "#/components/examples/goal"
         required: true
       responses:
         "200":
@@ -855,85 +855,85 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Goal'
+                $ref: "#/components/schemas/Goal"
               examples:
                 goal:
-                  $ref: '#/components/examples/goal'
+                  $ref: "#/components/examples/goal"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: GoalController
   /user/{userID}/notification:
     get:
       tags:
-      - Notification
+        - Notification
       summary: Get notifications list for a specific user.
       operationId: getNotifications
       parameters:
-      - name: userID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int32
+        - name: userID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int32
       responses:
         "200":
           description: response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationsList'
+                $ref: "#/components/schemas/NotificationsList"
               examples:
                 notificationsList:
-                  $ref: '#/components/examples/notificationsList'
+                  $ref: "#/components/examples/notificationsList"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorBadReq'
+                  $ref: "#/components/examples/errorBadReq"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 error:
-                  $ref: '#/components/examples/errorNotFound'
+                  $ref: "#/components/examples/errorNotFound"
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       x-swagger-router-controller: NotificationController
 components:
   schemas:
     Income:
       required:
-      - incomeDate
-      - incomeID
-      - userID
+        - incomeDate
+        - incomeID
+        - userID
       type: object
       properties:
         incomeID:
@@ -959,9 +959,9 @@ components:
         incomeDescription: incomeDescription
     Expense:
       required:
-      - expenseDate
-      - expenseID
-      - userID
+        - expenseDate
+        - expenseID
+        - userID
       type: object
       properties:
         expenseID:
@@ -987,10 +987,10 @@ components:
         expenseDate: 2000-01-23T04:56:07.000+00:00
     Goal:
       required:
-      - amount
-      - goalID
-      - months
-      - userID
+        - amount
+        - goalID
+        - months
+        - userID
       type: object
       properties:
         goalID:
@@ -1023,11 +1023,11 @@ components:
         notificationDate: 2000-01-23T04:56:07.000+00:00
     User:
       required:
-      - email
-      - fullname
-      - password
-      - userID
-      - username
+        - email
+        - fullname
+        - password
+        - userID
+        - username
       type: object
       properties:
         userID:
@@ -1052,23 +1052,23 @@ components:
     IncomesList:
       type: array
       items:
-        $ref: '#/components/schemas/Income'
+        $ref: "#/components/schemas/Income"
     ExpensesList:
       type: array
       items:
-        $ref: '#/components/schemas/Expense'
+        $ref: "#/components/schemas/Expense"
     GoalsList:
       type: array
       items:
-        $ref: '#/components/schemas/Goal'
+        $ref: "#/components/schemas/Goal"
     NotificationsList:
       type: array
       items:
-        $ref: '#/components/schemas/Notification'
+        $ref: "#/components/schemas/Notification"
     Error:
       required:
-      - code
-      - message
+        - code
+        - message
       type: object
       properties:
         code:
@@ -1081,19 +1081,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
     NotFound:
       description: The specified resource was not found
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
     Unauthorized:
       description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
   examples:
     admin:
       summary: An example of a user
@@ -1116,18 +1116,18 @@ components:
     incomeList:
       summary: An example of incomes list
       value:
-      - incomeID: 1
-        userID: 1
-        incomeAmount: 1000
-        incomeSource: Invesment
-        incomeDescription: Income investing on Google
-        incomeDate: 2017-07-21T17:32:28Z
-      - incomeID: 2
-        userID: 1
-        incomeAmount: 800
-        incomeSource: Salary
-        incomeDescription: Income investing on Google
-        incomeDate: 2017-07-21T17:32:28Z
+        - incomeID: 1
+          userID: 1
+          incomeAmount: 1000
+          incomeSource: Invesment
+          incomeDescription: Income investing on Google
+          incomeDate: 2017-07-21T17:32:28Z
+        - incomeID: 2
+          userID: 1
+          incomeAmount: 800
+          incomeSource: Salary
+          incomeDescription: Income investing on Google
+          incomeDate: 2017-07-21T17:32:28Z
     expense:
       summary: An example of expense
       value:
@@ -1140,18 +1140,18 @@ components:
     expensesList:
       summary: An example of expenses list
       value:
-      - expenseID: 1
-        userID: 1
-        expenseAmount: 1000
-        expenseSource: Booking.com
-        expenseDescription: Expense from booking hotel room
-        expenseDate: 2017-07-21T17:32:28Z
-      - expenseID: 2
-        userID: 1
-        expenseAmount: 30
-        expenseSource: Supermarket
-        expenseDescription: Expense from shopping
-        expenseDate: 2017-07-21T17:32:28Z
+        - expenseID: 1
+          userID: 1
+          expenseAmount: 1000
+          expenseSource: Booking.com
+          expenseDescription: Expense from booking hotel room
+          expenseDate: 2017-07-21T17:32:28Z
+        - expenseID: 2
+          userID: 1
+          expenseAmount: 30
+          expenseSource: Supermarket
+          expenseDescription: Expense from shopping
+          expenseDate: 2017-07-21T17:32:28Z
     goal:
       summary: An example of goal
       value:
@@ -1162,23 +1162,23 @@ components:
     goalsList:
       summary: An example of goals list
       value:
-      - goalID: 1
-        userID: 1
-        amount: 1000
-        months: 1
-      - goalID: 2
-        userID: 1
-        amount: 5000
-        months: 6
+        - goalID: 1
+          userID: 1
+          amount: 1000
+          months: 1
+        - goalID: 2
+          userID: 1
+          amount: 5000
+          months: 6
     notificationsList:
       summary: An example of notifications list
       value:
-      - userID: 1
-        text: Υou have completed 25% of your monthly goal
-        notificationDate: 2017-07-21T17:32:28Z
-      - userID: 1
-        text: Be careful! Υou have spent over than 75% of your monthly income
-        notificationDate: 2017-07-21T17:32:28Z
+        - userID: 1
+          text: Υou have completed 25% of your monthly goal
+          notificationDate: 2017-07-21T17:32:28Z
+        - userID: 1
+          text: Be careful! Υou have spent over than 75% of your monthly income
+          notificationDate: 2017-07-21T17:32:28Z
     errorBadReq:
       summary: An example of error
       value:

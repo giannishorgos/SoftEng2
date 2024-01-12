@@ -8,9 +8,11 @@
  * incomeID Integer 
  * no response value expected for this operation
  **/
-exports.deleteIncomeBYID = function(userID, incomeID) {
-    return new Promise(function(resolve, reject) {
-        resolve();
+exports.deleteIncomeByID = function(userID, incomeID) {
+    return new Promise((resolve) => {
+        if(userID && incomeID) {
+            resolve("done");
+        }
     });
 }
 
@@ -23,8 +25,8 @@ exports.deleteIncomeBYID = function(userID, incomeID) {
  * returns Income
  **/
 exports.getIncomeByID = function(userID, incomeID, examples = {}) {
-    return new Promise(function(resolve, reject) {
-        if (Object.keys(examples).length > 0) {
+    return new Promise((resolve) => {
+        if (userID && incomeID && Object.keys(examples).length > 0) {
             resolve(examples[Object.keys(examples)[0]]);
         } else {
             resolve();
@@ -40,8 +42,8 @@ exports.getIncomeByID = function(userID, incomeID, examples = {}) {
  * returns IncomesList
  **/
 exports.getIncomes = function(userID, examples = {}) {
-    return new Promise(function(resolve, reject) {
-        if (Object.keys(examples).length > 0) {
+    return new Promise((resolve) => {
+        if (userID && Object.keys(examples).length > 0) {
             resolve(examples[Object.keys(examples)[0]]);
         } else {
             resolve();
@@ -57,8 +59,8 @@ exports.getIncomes = function(userID, examples = {}) {
  * returns Income
  **/
 exports.postIncome = function(body, userID, examples = {}) {
-    return new Promise(function(resolve, reject) {
-        if (Object.keys(examples).length > 0) {
+    return new Promise((resolve) => {
+        if (body && userID && Object.keys(examples).length > 0) {
             resolve(examples[Object.keys(examples)[0]]);
         } else {
             resolve();
@@ -76,8 +78,8 @@ exports.postIncome = function(body, userID, examples = {}) {
  * returns Income
  **/
 exports.putIncomebyID = function(body, userID, incomeID, examples = {}) {
-    return new Promise(function(resolve, reject) {
-        if (Object.keys(examples).length > 0) {
+    return new Promise((resolve)  => {
+        if (body && userID && incomeID && Object.keys(examples).length > 0) {
             resolve(examples[Object.keys(examples)[0]]);
         } else {
             resolve();

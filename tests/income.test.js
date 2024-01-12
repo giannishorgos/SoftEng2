@@ -1,7 +1,7 @@
 const test = require('ava')
 const { got } = require('got-cjs')
 const {
-    deleteIncomeBYID,
+    deleteIncomeByID,
     getIncomeByID,
     getIncomes,
     putIncomebyID,
@@ -43,9 +43,9 @@ test.before(async t => {
 
 // =================== SERVICES =================
 // Delete Income By ID Test Service
-test('deleteIncomeBYID test', async t => {
-    const promise = await deleteIncomeBYID('test_user_id', 'test_income_id')
-    t.is(promise, undefined)
+test('deleteIncomeByID test', async t => {
+    const promise = await deleteIncomeByID('test_user_id', 'test_income_id')
+    t.is(promise, "done")
 })
 
 

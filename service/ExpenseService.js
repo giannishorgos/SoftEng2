@@ -9,8 +9,10 @@
  * no response value expected for this operation
  **/
 exports.deleteExpenseByID = function(userID, expenseID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
+  return new Promise((resolve) => {
+    if(expenseID && userID) {
+      resolve("done");
+    }
   });
 }
 
@@ -23,8 +25,8 @@ exports.deleteExpenseByID = function(userID, expenseID) {
  * returns Expense
  **/
 exports.getExpenseByID = function(userID, expenseID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if(userID && expenseID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
@@ -40,11 +42,11 @@ exports.getExpenseByID = function(userID, expenseID, examples = {}) {
  * returns ExpensesList
  **/
 exports.getExpenses = function(userID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (userID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
-      resolve();
+      resolve(examples[Object.keys(examples)[0]]);
     }
   });
 }
@@ -57,8 +59,8 @@ exports.getExpenses = function(userID, examples = {}) {
  * returns Expense
  **/
 exports.postExpense = function(body, userID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (body && userID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
@@ -76,11 +78,11 @@ exports.postExpense = function(body, userID, examples = {}) {
  * returns Expense
  **/
 exports.putExpenseByID = function(body, userID, expenseID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (body && userID && expenseID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
-      resolve();
+      resolve(examples[Object.keys(examples)[0]]);
     }
   });
 }
