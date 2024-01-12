@@ -4,7 +4,7 @@ var utils = require('../utils/writer.js');
 var Goal = require('../service/GoalService');
 
 // Get Goal By ID
-module.exports.getGoalByID = function getGoalByID (req, res, next, userID, goalID) {
+module.exports.getGoalByID = function getGoalByID (res, userID, goalID) {
   Goal.getGoalByID(userID, goalID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -15,7 +15,7 @@ module.exports.getGoalByID = function getGoalByID (req, res, next, userID, goalI
 };
 
 // Get Goals
-module.exports.getGoals = function getGoals (req, res, next, userID) {
+module.exports.getGoals = function getGoals (res, userID) {
   Goal.getGoals(userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -26,7 +26,7 @@ module.exports.getGoals = function getGoals (req, res, next, userID) {
 };
 
 // Put Goal
-module.exports.putGoal = function putGoal (req, res, next, body, userID, goalID) {
+module.exports.putGoal = function putGoal (res, body, userID, goalID) {
   Goal.putGoal(body, userID, goalID)
     .then(function (response) {
       utils.writeJson(res, response);

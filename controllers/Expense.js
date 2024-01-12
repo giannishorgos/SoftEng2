@@ -4,7 +4,7 @@ var utils = require('../utils/writer.js');
 var Expense = require('../service/ExpenseService');
 
 // Delete Expense By ID
-module.exports.deleteExpenseByID = function deleteExpenseByID (req, res, next, userID, expenseID) {
+module.exports.deleteExpenseByID = function deleteExpenseByID (res, userID, expenseID) {
   Expense.deleteExpenseByID(userID, expenseID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -15,7 +15,7 @@ module.exports.deleteExpenseByID = function deleteExpenseByID (req, res, next, u
 };
 
 // Get Expense By ID
-module.exports.getExpenseByID = function getExpenseByID (req, res, next, userID, expenseID) {
+module.exports.getExpenseByID = function getExpenseByID (res, userID, expenseID) {
   Expense.getExpenseByID(userID, expenseID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -26,7 +26,7 @@ module.exports.getExpenseByID = function getExpenseByID (req, res, next, userID,
 };
 
 // Get Expenses
-module.exports.getExpenses = function getExpenses (req, res, next, userID) {
+module.exports.getExpenses = function getExpenses (res, userID) {
   Expense.getExpenses(userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -37,7 +37,7 @@ module.exports.getExpenses = function getExpenses (req, res, next, userID) {
 };
 
 // Post Expense
-module.exports.postExpense = function postExpense (req, res, next, body, userID) {
+module.exports.postExpense = function postExpense (res, body, userID) {
   Expense.postExpense(body, userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -48,7 +48,7 @@ module.exports.postExpense = function postExpense (req, res, next, body, userID)
 };
 
 // Put Expense
-module.exports.putExpenseByID = function putExpenseByID (req, res, next, body, userID, expenseID) {
+module.exports.putExpenseByID = function putExpenseByID (res, body, userID, expenseID) {
   Expense.putExpenseByID(body, userID, expenseID)
     .then(function (response) {
       utils.writeJson(res, response);
