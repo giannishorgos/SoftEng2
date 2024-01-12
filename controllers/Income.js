@@ -3,7 +3,8 @@
 var utils = require('../utils/writer.js');
 var Income = require('../service/IncomeService');
 
-module.exports.deleteIncomeByID = function deleteIncomeByID(req, res, next, userID, incomeID) {
+// Delete Income By ID
+module.exports.deleteIncomeByID = function deleteIncomeByID (res, userID, incomeID) {
     Income.deleteIncomeByID(userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -14,7 +15,7 @@ module.exports.deleteIncomeByID = function deleteIncomeByID(req, res, next, user
 };
 
 // Get Income By ID
-module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, incomeID) {
+module.exports.getIncomeByID = function getIncomeByID (res, userID, incomeID) {
     return Income.getIncomeByID(userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -26,7 +27,7 @@ module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, in
 };
 
 // Get Incomes
-module.exports.getIncomes = function getIncomes(req, res, next, userID) {
+module.exports.getIncomes = function getIncomes(res, userID) {
     Income.getIncomes(userID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -37,7 +38,7 @@ module.exports.getIncomes = function getIncomes(req, res, next, userID) {
 };
 
 // Post Income
-module.exports.postIncome = function postIncome(req, res, next, body, userID) {
+module.exports.postIncome = function postIncome(res, body, userID) {
     Income.postIncome(body, userID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -48,7 +49,7 @@ module.exports.postIncome = function postIncome(req, res, next, body, userID) {
 };
 
 // Put Income By ID
-module.exports.putIncomebyID = function putIncomebyID(req, res, next, body, userID, incomeID) {
+module.exports.putIncomebyID = function putIncomebyID(res, body, userID, incomeID) {
     Income.putIncomebyID(body, userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);

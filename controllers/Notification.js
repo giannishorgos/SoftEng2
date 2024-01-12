@@ -5,7 +5,7 @@ var utils = require('../utils/writer.js');
 var Notification = require('../service/NotificationService');
 
 // Get Notifications
-module.exports.getNotifications = function getNotifications (req, res, next, userID) {
+module.exports.getNotifications = function getNotifications (res, userID) {
   Notification.getNotifications(userID)
     .then(function (response) {
       utils.writeJson(res, response);
