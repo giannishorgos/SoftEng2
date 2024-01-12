@@ -3,9 +3,8 @@
 var utils = require('../utils/writer.js');
 var Income = require('../service/IncomeService');
 
-// Delete Income By ID
-module.exports.deleteIncomeBYID = function deleteIncomeBYID(req, res, next, userID, incomeID) {
-    Income.deleteIncomeBYID(userID, incomeID)
+module.exports.deleteIncomeByID = function deleteIncomeByID(req, res, next, userID, incomeID) {
+    Income.deleteIncomeByID(userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);
         })

@@ -53,9 +53,9 @@ test.before(t => {
 
 // =================== SERVICES =================
 // Delete Expense By ID Test Service
-test('deleteExpenseBYID test', async t => {
+test('deleteExpenseByID test', async t => {
     const promise = await deleteExpenseByID('test_user_id', 'test_expense_id')
-    t.is(promise, undefined)
+    t.is(promise, "done")
 })
 
 
