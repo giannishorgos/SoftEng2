@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var Income = require('../service/IncomeService');
 
+// Delete Income By ID
 module.exports.deleteIncomeByID = function deleteIncomeByID (res, userID, incomeID) {
     Income.deleteIncomeByID(userID, incomeID)
         .then(function(response) {
