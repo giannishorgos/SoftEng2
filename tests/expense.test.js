@@ -9,7 +9,6 @@ const {
     postExpense
 } = require('../service/ExpenseService')
 
-
 test.before(t => {
     t.context.expected = {
         'application/json': {
@@ -53,12 +52,14 @@ test.before(t => {
 })
 
 // =================== SERVICES =================
-test('deleteExpenseBYID test', async t => {
+// Delete Expense By ID Test Service
+test('deleteExpenseByID test', async t => {
     const promise = await deleteExpenseByID('test_user_id', 'test_expense_id')
-    t.is(promise, undefined)
+    t.is(promise, "done")
 })
 
 
+// Get Expense By ID Test Service
 test('getExpenseByID test', async t => {
     const promise = await getExpenseByID('test_user_id', 'test_expense_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -68,6 +69,7 @@ test('getExpenseByID test', async t => {
 })
 
 
+// Get Expenses Test Service
 test('getExpenses test', async t => {
     let examples = {}
     examples['application/json'] = new Array(2).fill(t.context.expected['application/json'])
@@ -79,6 +81,7 @@ test('getExpenses test', async t => {
 })
 
 
+// Put Expense By ID Test Service
 test('putExpenseByID test', async t => {
     const promise = await putExpenseByID('test_body', 'test_user_id', 'test_expense_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -88,6 +91,7 @@ test('putExpenseByID test', async t => {
 })
 
 
+// Post Expense Test Service
 test('postExpense test', async t => {
     const promise = await postExpense('test_body', 'test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -97,6 +101,7 @@ test('postExpense test', async t => {
 })
 
 // =================== ENDPOINTS ===================
+// Get Expense Test Endpoint
 test.serial('GET Expense test', async t => {
     const response = await got('user/1/expense', {
         prefixUrl: t.context.prefixUrl
@@ -105,6 +110,7 @@ test.serial('GET Expense test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Post Expense Test Endpoint
 test.serial('POST Expense test', async t => {
     const response = await got.post('user/1/expense', {
         prefixUrl: t.context.prefixUrl,
@@ -114,6 +120,7 @@ test.serial('POST Expense test', async t => {
     t.is(response.statusCode, 201)
 })
 
+// Get Expense ID Test Endpoint
 test.serial('GET Expense ID test', async t => {
     const response = await got('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,
@@ -122,6 +129,7 @@ test.serial('GET Expense ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Put Expense Test Endpoint
 test.serial('PUT Expense test', async t => {
     const response = await got.put('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,
@@ -131,6 +139,7 @@ test.serial('PUT Expense test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Delete Expense Test Endpoint
 test.serial('DELETE Expense test', async t => {
     const response = await got.delete('user/1/expense/1', {
         prefixUrl: t.context.prefixUrl,

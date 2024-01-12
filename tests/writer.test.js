@@ -15,6 +15,7 @@ test.before(async t => {
 })
 
 
+// ResponsePayload constructor Test
 test('ResponsePayload constructor Test', t => {
     let code = 200, payload = { key: 'value' }
     let response_obj = new ResponsePayload(code, payload)
@@ -24,6 +25,7 @@ test('ResponsePayload constructor Test', t => {
     t.is(response_obj.payload, payload)
 })
 
+// ReponsePayload factory Test
 test('ReponsePayload factory Test', t => {
     let code = 200, payload = { key: 'value' }
 
@@ -34,6 +36,7 @@ test('ReponsePayload factory Test', t => {
 
 })
 
+// Writer Test
 test('writeJSON Test', t => {
     let code = 200
     let payload = { ...t.context.expected }

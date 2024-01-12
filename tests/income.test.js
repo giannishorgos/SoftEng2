@@ -1,13 +1,11 @@
 const test = require('ava')
 const { got } = require('got-cjs')
 const {
-    deleteIncomeBYID,
+    deleteIncomeByID,
     getIncomeByID,
     getIncomes,
     putIncomebyID,
     postIncome } = require('../service/IncomeService')
-
-
 
 test.before(async t => {
     t.context.expected = {
@@ -43,13 +41,15 @@ test.before(async t => {
 })
 
 
-// =================== SERVICES ================= 
-test('deleteIncomeBYID test', async t => {
-    const promise = await deleteIncomeBYID('test_user_id', 'test_income_id')
-    t.is(promise, undefined)
+// =================== SERVICES =================
+// Delete Income By ID Test Service
+test('deleteIncomeByID test', async t => {
+    const promise = await deleteIncomeByID('test_user_id', 'test_income_id')
+    t.is(promise, "done")
 })
 
 
+// Get Income By ID Test Service
 test('getIncomeByID test', async t => {
     const promise = await getIncomeByID('test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -59,6 +59,7 @@ test('getIncomeByID test', async t => {
 })
 
 
+// Get Incomes Test Service
 test('getIncomes test', async t => {
     let examples = {}
     examples['application/json'] = new Array(2).fill(t.context.expected['application/json'])
@@ -70,6 +71,7 @@ test('getIncomes test', async t => {
 })
 
 
+// Put Income By ID Test Service
 test('putIncomebyID test', async t => {
     const promise = await putIncomebyID('test_body', 'test_user_id', 'test_income_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -79,6 +81,7 @@ test('putIncomebyID test', async t => {
 })
 
 
+// Post Income Test Service
 test('postIncome test', async t => {
     const promise = await postIncome('test_body', 'test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -87,7 +90,8 @@ test('postIncome test', async t => {
     t.is(no_data_promise, undefined)
 })
 
-// =================== ENDPOINTS =================== 
+// =================== ENDPOINTS ===================
+// Get Income Test Endpoint
 test.serial('GET Income test', async t => {
     const response = await got('user/1/income', {
         prefixUrl: t.context.prefixUrl
@@ -96,6 +100,7 @@ test.serial('GET Income test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Post Income Test Endpoint
 test.serial('POST Income test', async t => {
     const response = await got.post('user/1/income', {
         prefixUrl: t.context.prefixUrl,
@@ -105,6 +110,7 @@ test.serial('POST Income test', async t => {
     t.is(response.statusCode, 201)
 })
 
+// Get Income ID Test Endpoint
 test.serial('GET Income ID test', async t => {
     const response = await got('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,
@@ -113,6 +119,7 @@ test.serial('GET Income ID test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Put Income Test Endpoint
 test.serial('PUT Income test', async t => {
     const response = await got.put('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,
@@ -122,6 +129,7 @@ test.serial('PUT Income test', async t => {
     t.is(response.statusCode, 200)
 })
 
+// Delete Income Test Endpoint
 test.serial('DELETE Income test', async t => {
     const response = await got.delete('user/1/income/1', {
         prefixUrl: t.context.prefixUrl,

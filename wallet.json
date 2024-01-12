@@ -638,7 +638,7 @@
           "Income"
         ],
         "summary": "Delete one income entry.",
-        "operationId": "deleteIncomeBYID",
+        "operationId": "deleteIncomeByID",
         "parameters": [
           {
             "name": "userID",

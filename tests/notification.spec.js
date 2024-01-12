@@ -31,6 +31,7 @@ test.before(t => {
     t.context.prefixUrl = 'https://virtserver.swaggerhub.com/KMYLONAS_1/SoftwareEngineering1/1.0.0/'
 })
 
+// Get Notifications Test Service
 test('getNotifications test', async t => {
     const promise = await getNotifications('test_user_id', t.context.expected)
     t.deepEqual(promise, t.context.expected['application/json'])
@@ -39,6 +40,7 @@ test('getNotifications test', async t => {
     t.deepEqual(no_data_promise, undefined)
 })
 
+// Get Notifications Test Endpoint
 test.serial('GET Notifications test', async t => {
     const response = await got('user/1/notification', {
         prefixUrl: t.context.prefixUrl

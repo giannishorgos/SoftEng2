@@ -8,8 +8,8 @@
  * returns User
  **/
 exports.getPersonalInfo = function(userID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (userID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
@@ -25,8 +25,8 @@ exports.getPersonalInfo = function(userID, examples = {}) {
  * returns User
  **/
 exports.postPersonalInfo = function(body, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (body && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
@@ -43,8 +43,8 @@ exports.postPersonalInfo = function(body, examples = {}) {
  * returns User
  **/
 exports.putPersonalInfo = function(body,userID, examples = {}) {
-  return new Promise(function(resolve, reject) {
-    if (Object.keys(examples).length > 0) {
+  return new Promise((resolve) => {
+    if (body && userID && Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();

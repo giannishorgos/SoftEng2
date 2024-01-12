@@ -3,8 +3,9 @@
 var utils = require('../utils/writer.js');
 var Income = require('../service/IncomeService');
 
-module.exports.deleteIncomeBYID = function deleteIncomeBYID(req, res, next, userID, incomeID) {
-    Income.deleteIncomeBYID(userID, incomeID)
+// Delete Income By ID
+module.exports.deleteIncomeByID = function deleteIncomeByID (res, userID, incomeID) {
+    Income.deleteIncomeByID(userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);
         })
@@ -13,7 +14,8 @@ module.exports.deleteIncomeBYID = function deleteIncomeBYID(req, res, next, user
         });
 };
 
-module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, incomeID) {
+// Get Income By ID
+module.exports.getIncomeByID = function getIncomeByID (res, userID, incomeID) {
     return Income.getIncomeByID(userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -24,7 +26,8 @@ module.exports.getIncomeByID = function getIncomeByID(req, res, next, userID, in
         });
 };
 
-module.exports.getIncomes = function getIncomes(req, res, next, userID) {
+// Get Incomes
+module.exports.getIncomes = function getIncomes(res, userID) {
     Income.getIncomes(userID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -34,7 +37,8 @@ module.exports.getIncomes = function getIncomes(req, res, next, userID) {
         });
 };
 
-module.exports.postIncome = function postIncome(req, res, next, body, userID) {
+// Post Income
+module.exports.postIncome = function postIncome(res, body, userID) {
     Income.postIncome(body, userID)
         .then(function(response) {
             utils.writeJson(res, response);
@@ -44,7 +48,8 @@ module.exports.postIncome = function postIncome(req, res, next, body, userID) {
         });
 };
 
-module.exports.putIncomebyID = function putIncomebyID(req, res, next, body, userID, incomeID) {
+// Put Income By ID
+module.exports.putIncomebyID = function putIncomebyID(res, body, userID, incomeID) {
     Income.putIncomebyID(body, userID, incomeID)
         .then(function(response) {
             utils.writeJson(res, response);

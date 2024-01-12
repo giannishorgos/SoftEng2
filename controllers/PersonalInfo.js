@@ -3,7 +3,8 @@
 var utils = require('../utils/writer.js');
 var PersonalInfo = require('../service/PersonalInfoService');
 
-module.exports.getPersonalInfo = function getPersonalInfo (req, res, next, userID) {
+// Get Personal-Info
+module.exports.getPersonalInfo = function getPersonalInfo (res, userID) {
   PersonalInfo.getPersonalInfo(userID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -13,7 +14,8 @@ module.exports.getPersonalInfo = function getPersonalInfo (req, res, next, userI
     });
 };
 
-module.exports.postPersonalInfo = function postPersonalInfo (req, res, next, body) {
+// Post Personal-Info
+module.exports.postPersonalInfo = function postPersonalInfo (res, body) {
   PersonalInfo.postPersonalInfo(body)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -23,7 +25,8 @@ module.exports.postPersonalInfo = function postPersonalInfo (req, res, next, bod
     });
 };
 
-module.exports.putPersonalInfo = function putPersonalInfo (req, res, next, body, userID) {
+// Put Personal-Info
+module.exports.putPersonalInfo = function putPersonalInfo (res, body, userID) {
   PersonalInfo.putPersonalInfo(body, userID)
     .then(function (response) {
       utils.writeJson(res, response);
